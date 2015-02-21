@@ -30,6 +30,12 @@
     <ClInclude Include="oracle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="global_types.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="networker.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -42,6 +48,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="oracle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="networker.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

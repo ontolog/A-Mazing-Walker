@@ -4,34 +4,11 @@
 #include <map>
 #include <vector>
 #include <list>
-enum EDirections
-{
-	eNorth,
-	eSouth,
-	eWest,
-	eEast,
-	eTotal,
-	eNone
-};
-std::string FirstDirLetter[eTotal] = {"N","S","W", "E"};
-EDirections Opposite[eTotal] = { eSouth, eNorth, eEast, eWest };
+#include "global_types.h"
+
 
 typedef std::map <std::string, double> mapSD;
 
-struct responce
-{
-	bool array[eTotal];
-	int movementToExit;
-};
-class TGameData
-{
-public:
-	void 
-	void setData()
-	{
-
-	}
-};
 class TOperator
 {
 public:
