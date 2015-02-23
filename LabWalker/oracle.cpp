@@ -1,7 +1,19 @@
-#include"Oracle.h"
+#include "stdafx.h"	
 
-Oracle::Oracle() :m_branch(NULL,NULL), m_movementToexit(0)
+#include "oracle.h"
+#include <time.h>
+#define MAX_RANDOM_STEPS 3
+enum rating
 {
+	negative = -1,
+	neutral = 0,
+	good = 1,
+	verygood = 2,
+	great = 3
+};
+Oracle::Oracle() :m_branch(NULL, NULL), m_movementToexit(0), m_MovementCount(NULL)
+{
+	m_passed[eTotal] = { false };
 	using namespace std::placeholders;
 	m_gameData = new TGameData;
 	m_operator = new TOperator;
@@ -24,7 +36,10 @@ Oracle::Oracle() :m_branch(NULL,NULL), m_movementToexit(0)
 		}
 	}
 };
+int Oracle::getData()
+{
 
+}
 void Oracle::PackageReceiveCallBack(const responce& resp)
 {
 	m_isUpdated = false;
@@ -33,17 +48,54 @@ void Oracle::PackageReceiveCallBack(const responce& resp)
 		m_isUpdated = true;
 		m_movementToexit = resp.movementToExit;
 	}
-	doMovement();
-}
-void Oracle::doMovement()
-{
 	if (m_isUpdated)
 	{
 		m_gameData->setData();
 	}
-	analysisRating();
+	doMovement(resp);
 }
-int Oracle::analysisRating()
+bool Oracle::isMovePossibly(const responce& resp, int rnd)
 {
-		
+	if (resp.array[rnd] == true)
+	{
+		return true;
+	}
 }
+
+void Oracle::doMovement(const responce& resp)
+{
+	if (m_MovementCount < MAX_RANDOM_STEPS)
+	{
+		doRandomMove(resp);
+	}	
+	else
+	{
+		analysisRating(resp);
+	}
+	m_MovementCount++;
+}
+
+void Oracle::analysisRating(const responce& resp)
+{
+	
+}
+void Oracle::doRandomMove(const responce& resp)
+{
+	int randomStep = 0;
+	srand(time(NULL));
+	bool passedCell[eTotal] = { false };
+	for (int cnt = 0; cnt < eTotal; cnt++)
+	{
+		if (!isMovePossibly(resp, randomStep))
+		{
+			randomStep = rand() % eTotal;
+		}
+		else
+		{
+			
+			break;
+		}
+
+	}
+}
+
