@@ -1,6 +1,8 @@
 #pragma once
 #include "stdafx.h"
 #include <functional>
+
+#include <list>
 #include <iostream>
 #include <map>
 #include <vector>
@@ -8,7 +10,7 @@
 
 enum EDirections
 {
-	eNorth,
+	eNorth, 
 	eSouth,
 	eWest,
 	eEast,
@@ -44,20 +46,24 @@ public:
 class Oracle
 {
 private:
-	mapSD			m_branch;
-	int				m_movementToexit;
-	bool			m_isUpdated;
-	unsigned		m_MovementCount;
-	TGameData*		m_gameData;
-	TOperator*		m_operator;
-	int				m_randcnt;
+	mapSD					m_branch;
+	int						m_movementToexit;
+	bool					m_isUpdated;
+	unsigned				m_MovementCount;
+	TGameData*				m_gameData;
+	TOperator*				m_operator;
+	int						m_randcnt;
+	bool					m_passed[eTotal];
+	
 public:
 	Oracle();
 	void BrainWork();
 	void PackageReceiveCallBack(const responce&);// bind 
 	int getData();
 	void analysisRating(const responce&);
-	void doMovement();
-	bool isEfectiveMovement();
-	bool create();
+	void doMovement(const responce&);
+	bool isEfectiveMovement(const responce&);
+	void doRandomMove(const responce&);
+	bool isMovePossibly(const responce&, int) ;
+	bool isPassed(const responce& resp);
 };
