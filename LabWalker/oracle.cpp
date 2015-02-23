@@ -1,6 +1,15 @@
-#include"Oracle.h"
-
-Oracle::Oracle() :m_branch(NULL,NULL), m_movementToexit(0)
+#include "stdafx.h"	
+#include "oracle.h"
+#include <time.h>
+enum rating
+{
+	negative = -1,
+	neutral = 0,
+	good = 1,
+	verygood = 2,
+	great = 3
+};
+Oracle::Oracle() :m_branch(NULL, NULL), m_movementToexit(0), m_MovementCount(NULL)
 {
 	using namespace std::placeholders;
 	m_gameData = new TGameData;
@@ -24,7 +33,10 @@ Oracle::Oracle() :m_branch(NULL,NULL), m_movementToexit(0)
 		}
 	}
 };
-
+int Oracle::getData()
+{
+	
+}
 void Oracle::PackageReceiveCallBack(const responce& resp)
 {
 	m_isUpdated = false;
@@ -33,17 +45,40 @@ void Oracle::PackageReceiveCallBack(const responce& resp)
 		m_isUpdated = true;
 		m_movementToexit = resp.movementToExit;
 	}
-	doMovement();
-}
-void Oracle::doMovement()
-{
 	if (m_isUpdated)
 	{
 		m_gameData->setData();
 	}
-	analysisRating();
+	m_MovementCount++;
+	analysisRating(resp);
+	doMovement();
 }
-int Oracle::analysisRating()
+
+void Oracle::doMovement()
 {
-		
+	
+
 }
+void Oracle::analysisRating(const responce& resp)
+{
+	bool flag = false;
+	if (m_MovementCount < 3)
+	{
+		srand(time(NULL));
+		while (!flag)
+		{
+			m_randcnt = rand() % eTotal;
+
+			if (resp.array[m_randcnt] == true)
+			{
+				flag == true;
+				doMovement();
+			}
+		}
+	}
+	else
+	{
+	
+	}
+}
+	
