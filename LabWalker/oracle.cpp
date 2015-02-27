@@ -40,7 +40,7 @@ int Oracle::getData()
 {
 
 }
-void Oracle::PackageReceiveCallBack(const responce& resp)
+void Oracle::PackageReceiveCallBack(const Responce& resp)
 {
 	m_isUpdated = false;
 	if (resp.movementToExit >= 0)
@@ -50,19 +50,19 @@ void Oracle::PackageReceiveCallBack(const responce& resp)
 	}
 	if (m_isUpdated)
 	{
-		m_gameData->setData();
+		//m_gameData->AddPosition();
 	}
 	doMovement(resp);
 }
-bool Oracle::isMovePossibly(const responce& resp, int rnd)
+bool Oracle::isMovePossibly(const Responce& resp, int rnd)
 {
-	if (resp.array[rnd] == true)
+	if (resp.awal_side[rnd] == true)
 	{
 		return true;
 	}
 }
 
-void Oracle::doMovement(const responce& resp)
+void Oracle::doMovement(const Responce& resp)
 {
 	if (m_MovementCount < MAX_RANDOM_STEPS)
 	{
@@ -75,11 +75,11 @@ void Oracle::doMovement(const responce& resp)
 	m_MovementCount++;
 }
 
-void Oracle::analysisRating(const responce& resp)
+void Oracle::analysisRating(const Responce& resp)
 {
 	
 }
-void Oracle::doRandomMove(const responce& resp)
+void Oracle::doRandomMove(const Responce& resp)
 {
 	int randomStep = 0;
 	srand(time(NULL));
