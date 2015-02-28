@@ -9,7 +9,6 @@ struct Responce
 	int movementToExit;
 };
 
-
 enum EDirections
 {
 	eNorth,
@@ -24,12 +23,10 @@ std::string FirstDirLetter[eTotal] = { "N", "S", "W", "E" };
 
 EDirections Opposite[eTotal] = { eSouth, eNorth, eEast, eWest };
 
-
-
-
-
-
-
+struct TreSteps
+{
+	EDirections triple[3];
+};
 
 
 

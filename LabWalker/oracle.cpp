@@ -3,6 +3,7 @@
 #include "oracle.h"
 #include <time.h>
 #define MAX_RANDOM_STEPS 3
+
 enum rating
 {
 	negative = -1,
@@ -11,6 +12,7 @@ enum rating
 	verygood = 2,
 	great = 3
 };
+
 Oracle::Oracle() :m_branch(NULL, NULL), m_movementToexit(0), m_MovementCount(NULL)
 {
 	m_passed[eTotal] = { false };
@@ -36,10 +38,12 @@ Oracle::Oracle() :m_branch(NULL, NULL), m_movementToexit(0), m_MovementCount(NUL
 		}
 	}
 };
+
 int Oracle::getData()
 {
 
 }
+
 void Oracle::PackageReceiveCallBack(const Responce& resp)
 {
 	m_isUpdated = false;
@@ -48,12 +52,14 @@ void Oracle::PackageReceiveCallBack(const Responce& resp)
 		m_isUpdated = true;
 		m_movementToexit = resp.movementToExit;
 	}
+
 	if (m_isUpdated)
 	{
-		//m_gameData->AddPosition();
+		m_gameData->AddPosition();
 	}
 	doMovement(resp);
 }
+
 bool Oracle::isMovePossibly(const Responce& resp, int rnd)
 {
 	if (resp.awal_side[rnd] == true)
@@ -64,6 +70,8 @@ bool Oracle::isMovePossibly(const Responce& resp, int rnd)
 
 void Oracle::doMovement(const Responce& resp)
 {
+	EDirections next_dir;//next direction
+
 	if (m_MovementCount < MAX_RANDOM_STEPS)
 	{
 		doRandomMove(resp);
@@ -73,12 +81,19 @@ void Oracle::doMovement(const Responce& resp)
 		analysisRating(resp);
 	}
 	m_MovementCount++;
+
+	m_LastDirection = next_dir;
 }
 
 void Oracle::analysisRating(const Responce& resp)
 {
-	
+	if (resp.movementToExit >= 0)
+	{
+	}
+
+
 }
+
 void Oracle::doRandomMove(const Responce& resp)
 {
 	int randomStep = 0;

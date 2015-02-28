@@ -35,6 +35,7 @@ private:
 	TOperator*				m_operator;
 	int						m_randcnt;
 	bool					m_passed[eTotal];
+	EDirections				m_LastDirection;
 public:
 	Oracle();
 	void BrainWork();

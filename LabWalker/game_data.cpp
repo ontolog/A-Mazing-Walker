@@ -81,4 +81,12 @@ int TGameData::AddPosition(EDirections iDir, Responce iResp)
 	if (iResp.movementToExit >= 0) current_player_cell->StepsToExit = iResp.movementToExit;
 	current_player_cell->mPassedTimes++;
 
+	return 0;
+}
+
+bool TGameData::IsPathExist(TreSteps iSteps)
+{ 
+
+	
+	return false; 
 }

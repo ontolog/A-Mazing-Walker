@@ -3,10 +3,6 @@
 
 #include "global_types.h"
 
-struct TreSteps
-{
-	EDirections triple[3];
-};
 
 struct MazeCell
 {
@@ -30,10 +26,10 @@ public:
 	TGameData();
 	int GetPathUnknownStepsCount(TreSteps iSteps);
 	int AddPosition(EDirections iDir, Responce iResp);
-	bool IsPathExist(TreSteps iSteps){ return false; }
+	bool IsPathExist(TreSteps iSteps);
+	MazeCell * GetCurrentCell(){ return current_player_cell; } 
 private:
 	MazeCell *current_player_cell;
-
 };
 
 
