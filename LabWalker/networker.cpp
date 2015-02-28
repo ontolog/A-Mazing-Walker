@@ -19,7 +19,7 @@ bool NetWorker::Connect()
 
 void NetWorker::Disconnect()
 {
-
+// to do disconnect
 }
 
 int NetWorker::SendAndReceive(std::string, std::string *)
